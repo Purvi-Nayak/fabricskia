@@ -4,7 +4,7 @@
  * for pixel-perfect UI rendering across platforms
  */
 
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -17,7 +17,7 @@ import {
   Platform,
 } from 'react-native';
 
-import { renderingEngine } from './src/engine/RenderingEngine';
+import {renderingEngine} from './src/engine/RenderingEngine';
 import {
   PlatformInfoDisplay,
   ConsistencyTestComponent,
@@ -26,49 +26,56 @@ import {
 } from './src/components/DemoComponents';
 
 // Web-specific Skia fallback component
-const WebSkiaFallback: React.FC<{ width: number; height: number }> = ({ width, height }) => {
+const WebSkiaFallback: React.FC<{width: number; height: number}> = ({
+  width,
+  height,
+}) => {
   return (
-    <View style={{
-      width,
-      height,
-      backgroundColor: '#f0f0f0',
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderRadius: 8,
-      borderWidth: 1,
-      borderColor: '#ddd',
-    }}>
-      <View style={{ padding: 20, alignItems: 'center' }}>
-        <Text style={{
-          fontSize: 18,
-          fontWeight: 'bold',
-          marginBottom: 12,
-          color: '#333',
-        }}>
+    <View
+      style={{
+        width,
+        height,
+        backgroundColor: '#f0f0f0',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 8,
+        borderWidth: 1,
+        borderColor: '#ddd',
+      }}>
+      <View style={{padding: 20, alignItems: 'center'}}>
+        <Text
+          style={{
+            fontSize: 18,
+            fontWeight: 'bold',
+            marginBottom: 12,
+            color: '#333',
+          }}>
           Cross-Platform Rendering Demo
         </Text>
-        <Text style={{
-          fontSize: 14,
-          color: '#666',
-          textAlign: 'center',
-          marginBottom: 16,
-        }}>
+        <Text
+          style={{
+            fontSize: 14,
+            color: '#666',
+            textAlign: 'center',
+            marginBottom: 16,
+          }}>
           Web Implementation with React Native Web
         </Text>
-        
+
         {/* Simple web-based graphics demonstration */}
         <View style={styles.webGraphicsContainer}>
-          <View style={[styles.webShape, { backgroundColor: '#FF6B6B' }]} />
-          <View style={[styles.webShape, { backgroundColor: '#4ECDC4' }]} />
-          <View style={[styles.webShape, { backgroundColor: '#45B7D1' }]} />
+          <View style={[styles.webShape, {backgroundColor: '#FF6B6B'}]} />
+          <View style={[styles.webShape, {backgroundColor: '#4ECDC4'}]} />
+          <View style={[styles.webShape, {backgroundColor: '#45B7D1'}]} />
         </View>
-        
-        <Text style={{
-          fontSize: 12,
-          color: '#999',
-          textAlign: 'center',
-          marginTop: 12,
-        }}>
+
+        <Text
+          style={{
+            fontSize: 12,
+            color: '#999',
+            textAlign: 'center',
+            marginTop: 12,
+          }}>
           Skia rendering available on Android
         </Text>
       </View>
@@ -81,7 +88,7 @@ type DemoSection = 'platform' | 'skia' | 'consistency' | 'animation' | 'grid';
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   const [activeSection, setActiveSection] = useState<DemoSection>('platform');
-  
+
   const platformInfo = renderingEngine.getPlatformInfo();
 
   const backgroundStyle = {
@@ -90,11 +97,11 @@ function App(): React.JSX.Element {
   };
 
   const sections = [
-    { key: 'platform' as DemoSection, title: 'Platform Info', icon: '📱' },
-    { key: 'skia' as DemoSection, title: 'Graphics Demo', icon: '🎨' },
-    { key: 'consistency' as DemoSection, title: 'Consistency', icon: '📐' },
-    { key: 'animation' as DemoSection, title: 'Animation', icon: '🚀' },
-    { key: 'grid' as DemoSection, title: 'Pixel Grid', icon: '🔲' },
+    {key: 'platform' as DemoSection, title: 'Platform Info', icon: '📱'},
+    {key: 'skia' as DemoSection, title: 'Graphics Demo', icon: '🎨'},
+    {key: 'consistency' as DemoSection, title: 'Consistency', icon: '📐'},
+    {key: 'animation' as DemoSection, title: 'Animation', icon: '🚀'},
+    {key: 'grid' as DemoSection, title: 'Pixel Grid', icon: '🔲'},
   ];
 
   const renderSection = () => {
@@ -104,12 +111,20 @@ function App(): React.JSX.Element {
       case 'skia':
         return (
           <View style={styles.skiaContainer}>
-            <Text style={[styles.sectionTitle, { color: isDarkMode ? '#fff' : '#333' }]}>
+            <Text
+              style={[
+                styles.sectionTitle,
+                {color: isDarkMode ? '#fff' : '#333'},
+              ]}>
               Cross-Platform Graphics
             </Text>
             <WebSkiaFallback width={320} height={300} />
-            <Text style={[styles.sectionDescription, { color: isDarkMode ? '#ccc' : '#666' }]}>
-              {platformInfo.isWeb 
+            <Text
+              style={[
+                styles.sectionDescription,
+                {color: isDarkMode ? '#ccc' : '#666'},
+              ]}>
+              {platformInfo.isWeb
                 ? 'Web implementation using React Native Web with CSS-based graphics.'
                 : 'Native implementation with Skia rendering for pixel-perfect graphics.'}
             </Text>
@@ -132,43 +147,71 @@ function App(): React.JSX.Element {
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor={backgroundStyle.backgroundColor}
       />
-      
+
       {/* Header */}
-      <View style={[styles.header, { backgroundColor: isDarkMode ? '#2a2a2a' : '#f8f9fa' }]}>
-        <Text style={[styles.headerTitle, { color: isDarkMode ? '#fff' : '#333' }]}>
+      <View
+        style={[
+          styles.header,
+          {backgroundColor: isDarkMode ? '#2a2a2a' : '#f8f9fa'},
+        ]}>
+        <Text
+          style={[styles.headerTitle, {color: isDarkMode ? '#fff' : '#333'}]}>
           Cross-Platform Rendering Engine
         </Text>
         <View style={styles.headerInfo}>
-          <Text style={[styles.headerSubtitle, { color: isDarkMode ? '#ccc' : '#666' }]}>
-            {platformInfo.platform.toUpperCase()} • Fabric: {platformInfo.fabricEnabled ? 'ON' : 'OFF'}
+          <Text
+            style={[
+              styles.headerSubtitle,
+              {color: isDarkMode ? '#ccc' : '#666'},
+            ]}>
+            {platformInfo.platform.toUpperCase()} • Fabric:{' '}
+            {platformInfo.fabricEnabled ? 'ON' : 'OFF'}
           </Text>
-          <Text style={[styles.headerSubtitle, { color: isDarkMode ? '#ccc' : '#666' }]}>
+          <Text
+            style={[
+              styles.headerSubtitle,
+              {color: isDarkMode ? '#ccc' : '#666'},
+            ]}>
             Pixel Density: {platformInfo.pixelDensity}x
           </Text>
         </View>
       </View>
 
       {/* Navigation Tabs */}
-      <View style={[styles.tabContainer, { backgroundColor: isDarkMode ? '#333' : '#fff', borderBottomColor: isDarkMode ? '#555' : '#e0e0e0' }]}>
+      <View
+        style={[
+          styles.tabContainer,
+          {
+            backgroundColor: isDarkMode ? '#333' : '#fff',
+            borderBottomColor: isDarkMode ? '#555' : '#e0e0e0',
+          },
+        ]}>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {sections.map((section) => (
+          {sections.map(section => (
             <TouchableOpacity
               key={section.key}
               style={[
                 styles.tab,
                 activeSection === section.key && styles.activeTab,
-                activeSection === section.key && { backgroundColor: isDarkMode ? '#007AFF' : '#007AFF' },
+                activeSection === section.key && {
+                  backgroundColor: isDarkMode ? '#007AFF' : '#007AFF',
+                },
               ]}
-              onPress={() => setActiveSection(section.key)}
-            >
+              onPress={() => setActiveSection(section.key)}>
               <Text style={styles.tabIcon}>{section.icon}</Text>
               <Text
                 style={[
                   styles.tabText,
                   activeSection === section.key && styles.activeTabText,
-                  { color: activeSection === section.key ? '#fff' : (isDarkMode ? '#ccc' : '#666') },
-                ]}
-              >
+                  {
+                    color:
+                      activeSection === section.key
+                        ? '#fff'
+                        : isDarkMode
+                        ? '#ccc'
+                        : '#666',
+                  },
+                ]}>
                 {section.title}
               </Text>
             </TouchableOpacity>
@@ -177,19 +220,25 @@ function App(): React.JSX.Element {
       </View>
 
       {/* Content */}
-      <ScrollView 
+      <ScrollView
         style={backgroundStyle}
         contentInsetAdjustmentBehavior="automatic"
-        showsVerticalScrollIndicator={false}
-      >
+        showsVerticalScrollIndicator={false}>
         {renderSection()}
-        
+
         {/* Footer Info */}
-        <View style={[styles.footer, { backgroundColor: isDarkMode ? '#2a2a2a' : '#f8f9fa' }]}>
-          <Text style={[styles.footerText, { color: isDarkMode ? '#ccc' : '#666' }]}>
-            React Native {Platform.Version} • {platformInfo.isWeb ? 'Web' : 'Native'} Implementation
+        <View
+          style={[
+            styles.footer,
+            {backgroundColor: isDarkMode ? '#2a2a2a' : '#f8f9fa'},
+          ]}>
+          <Text
+            style={[styles.footerText, {color: isDarkMode ? '#ccc' : '#666'}]}>
+            React Native {Platform.Version} •{' '}
+            {platformInfo.isWeb ? 'Web' : 'Native'} Implementation
           </Text>
-          <Text style={[styles.footerText, { color: isDarkMode ? '#ccc' : '#666' }]}>
+          <Text
+            style={[styles.footerText, {color: isDarkMode ? '#ccc' : '#666'}]}>
             Cross-Platform Rendering Consistency Engine
           </Text>
         </View>
