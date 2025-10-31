@@ -67,14 +67,14 @@ export const SkiaCanvas: React.FC<SkiaCanvasProps> = ({
               fontSize: 16,
               fontWeight: 'bold',
               marginBottom: 8,
-              color: '#666',
+              color: '#ccc',
             }}>
             {isWeb ? 'Skia Canvas (Web Fallback)' : 'Skia Not Available'}
           </Text>
           <Text
             style={{
               fontSize: 12,
-              color: '#999',
+              color: '#ccc',
               textAlign: 'center',
             }}>
             {isWeb
@@ -278,6 +278,13 @@ export const SkiaShapesDemo: React.FC<{width: number; height: number}> = ({
       />
 
       {/* Complex shape using Path */}
+      <ConsistentPath
+        x={20}
+        y={250}
+        pathData="M10,10 L50,10 L50,50 L30,50 L30,30 L10,30 Z"
+        color="#FF8A65"
+        strokeWidth={3}
+      />
       <ConsistentPath
         x={20}
         y={250}

@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Animated,
+  useColorScheme,
 } from 'react-native';
 import {renderingEngine} from '../engine/RenderingEngine';
 
@@ -13,20 +14,33 @@ import {renderingEngine} from '../engine/RenderingEngine';
  * Platform Information Display Component
  */
 export const PlatformInfoDisplay: React.FC = () => {
+  const isDarkMode = useColorScheme() === 'dark';
   const debugInfo = renderingEngine.getDebugInfo();
   const {platformInfo, renderingMetrics, capabilities} = debugInfo;
 
   return (
-    <View style={styles.infoContainer}>
-      <Text style={styles.infoTitle}>Platform Information</Text>
+    <View
+      style={[
+        styles.infoContainer,
+        {backgroundColor: isDarkMode ? '#2a2a2a' : '#f8f9fa'},
+      ]}>
+      <Text style={[styles.infoTitle, {color: isDarkMode ? '#fff' : '#333'}]}>
+        Platform Information
+      </Text>
 
       <View style={styles.infoRow}>
-        <Text style={styles.infoLabel}>Platform:</Text>
-        <Text style={styles.infoValue}>{platformInfo.platform}</Text>
+        <Text style={[styles.infoLabel, {color: isDarkMode ? '#ccc' : '#666'}]}>
+          Platform:
+        </Text>
+        <Text style={[styles.infoValue, {color: isDarkMode ? '#fff' : '#333'}]}>
+          {platformInfo.platform}
+        </Text>
       </View>
 
       <View style={styles.infoRow}>
-        <Text style={styles.infoLabel}>Fabric Enabled:</Text>
+        <Text style={[styles.infoLabel, {color: isDarkMode ? '#ccc' : '#666'}]}>
+          Fabric Enabled:
+        </Text>
         <Text
           style={[
             styles.infoValue,
@@ -37,20 +51,28 @@ export const PlatformInfoDisplay: React.FC = () => {
       </View>
 
       <View style={styles.infoRow}>
-        <Text style={styles.infoLabel}>Pixel Density:</Text>
-        <Text style={styles.infoValue}>{platformInfo.pixelDensity}x</Text>
+        <Text style={[styles.infoLabel, {color: isDarkMode ? '#ccc' : '#666'}]}>
+          Pixel Density:
+        </Text>
+        <Text style={[styles.infoValue, {color: isDarkMode ? '#fff' : '#333'}]}>
+          {platformInfo.pixelDensity}x
+        </Text>
       </View>
 
       <View style={styles.infoRow}>
-        <Text style={styles.infoLabel}>Screen Size:</Text>
-        <Text style={styles.infoValue}>
+        <Text style={[styles.infoLabel, {color: isDarkMode ? '#ccc' : '#666'}]}>
+          Screen Size:
+        </Text>
+        <Text style={[styles.infoValue, {color: isDarkMode ? '#fff' : '#333'}]}>
           {platformInfo.screenDimensions.width} ×{' '}
           {platformInfo.screenDimensions.height}
         </Text>
       </View>
 
       <View style={styles.infoRow}>
-        <Text style={styles.infoLabel}>Skia Support:</Text>
+        <Text style={[styles.infoLabel, {color: isDarkMode ? '#ccc' : '#666'}]}>
+          Skia Support:
+        </Text>
         <Text
           style={[
             styles.infoValue,
@@ -67,32 +89,31 @@ export const PlatformInfoDisplay: React.FC = () => {
  * Consistency Test Component
  */
 export const ConsistencyTestComponent: React.FC = () => {
+  const isDarkMode = useColorScheme() === 'dark';
   const testSizes = [10, 20, 30, 40, 50];
   const testColors = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7'];
 
   return (
-    <View style={styles.testContainer}>
-      <Text style={styles.testTitle}>Consistency Tests</Text>
+    <View
+      style={[
+        styles.testContainer,
+        {backgroundColor: isDarkMode ? '#1a1a1a' : '#fff'},
+      ]}>
+      <Text style={[styles.testTitle, {color: isDarkMode ? '#fff' : '#333'}]}>
+        Consistency Tests
+      </Text>
 
       {/* Font Size Consistency */}
-      <View style={styles.testSection}>
-        <Text style={styles.testSectionTitle}>Font Size Consistency</Text>
-        {testSizes.map((size, index) => (
-          <Text
-            key={index}
-            style={[
-              styles.testText,
-              {fontSize: renderingEngine.getConsistentFontSize(size)},
-            ]}>
-            Font size {size}px (adjusted:{' '}
-            {renderingEngine.getConsistentFontSize(size)}px)
-          </Text>
-        ))}
-      </View>
 
       {/* Spacing Consistency */}
       <View style={styles.testSection}>
-        <Text style={styles.testSectionTitle}>Spacing Consistency</Text>
+        <Text
+          style={[
+            styles.testSectionTitle,
+            {color: isDarkMode ? '#ccc' : '#555'},
+          ]}>
+          Spacing Consistency
+        </Text>
         {testSizes.map((spacing, index) => (
           <View
             key={index}
@@ -110,7 +131,13 @@ export const ConsistencyTestComponent: React.FC = () => {
 
       {/* Border Radius Consistency */}
       <View style={styles.testSection}>
-        <Text style={styles.testSectionTitle}>Border Radius Consistency</Text>
+        <Text
+          style={[
+            styles.testSectionTitle,
+            {color: isDarkMode ? '#ccc' : '#555'},
+          ]}>
+          Border Radius Consistency
+        </Text>
         <View style={styles.radiusContainer}>
           {testSizes.map((radius, index) => (
             <View
@@ -136,6 +163,7 @@ export const ConsistencyTestComponent: React.FC = () => {
  * Interactive Animation Demo
  */
 export const AnimationDemo: React.FC = () => {
+  const isDarkMode = useColorScheme() === 'dark';
   const [animatedValue] = useState(new Animated.Value(0));
   const [isAnimating, setIsAnimating] = useState(false);
 
@@ -170,10 +198,21 @@ export const AnimationDemo: React.FC = () => {
   });
 
   return (
-    <View style={styles.animationContainer}>
-      <Text style={styles.animationTitle}>Cross-Platform Animation</Text>
+    <View
+      style={[
+        styles.animationContainer,
+        {backgroundColor: isDarkMode ? '#1a1a1a' : '#fff'},
+      ]}>
+      <Text
+        style={[styles.animationTitle, {color: isDarkMode ? '#fff' : '#333'}]}>
+        Cross-Platform Animation
+      </Text>
 
-      <View style={styles.animationStage}>
+      <View
+        style={[
+          styles.animationStage,
+          {backgroundColor: isDarkMode ? '#2a2a2a' : '#f0f0f0'},
+        ]}>
         <Animated.View
           style={[
             styles.animatedBox,
@@ -204,14 +243,22 @@ export const AnimationDemo: React.FC = () => {
  * Pixel Perfect Grid Demo
  */
 export const PixelPerfectGrid: React.FC = () => {
+  const isDarkMode = useColorScheme() === 'dark';
   const gridSize = 20;
   const gridCount = 10;
   const adjustedGridSize = renderingEngine.getConsistentSpacing(gridSize);
 
   return (
-    <View style={styles.gridContainer}>
-      <Text style={styles.gridTitle}>Pixel-Perfect Grid</Text>
-      <Text style={styles.gridSubtitle}>
+    <View
+      style={[
+        styles.gridContainer,
+        {backgroundColor: isDarkMode ? '#1a1a1a' : '#fff'},
+      ]}>
+      <Text style={[styles.gridTitle, {color: isDarkMode ? '#fff' : '#333'}]}>
+        Pixel-Perfect Grid
+      </Text>
+      <Text
+        style={[styles.gridSubtitle, {color: isDarkMode ? '#ccc' : '#666'}]}>
         {gridSize}px logical → {adjustedGridSize}px adjusted
       </Text>
 
@@ -226,7 +273,13 @@ export const PixelPerfectGrid: React.FC = () => {
                   width: adjustedGridSize,
                   height: adjustedGridSize,
                   backgroundColor:
-                    (row + col) % 2 === 0 ? '#E0E0E0' : '#F5F5F5',
+                    (row + col) % 2 === 0
+                      ? isDarkMode
+                        ? '#404040'
+                        : '#E0E0E0'
+                      : isDarkMode
+                      ? '#555555'
+                      : '#F5F5F5',
                 },
               ]}
             />
@@ -239,7 +292,6 @@ export const PixelPerfectGrid: React.FC = () => {
 
 const styles = StyleSheet.create({
   infoContainer: {
-    backgroundColor: '#f8f9fa',
     padding: 16,
     margin: 16,
     borderRadius: 8,
@@ -250,7 +302,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 12,
-    color: '#333',
   },
   infoRow: {
     flexDirection: 'row',
@@ -259,12 +310,10 @@ const styles = StyleSheet.create({
   },
   infoLabel: {
     fontSize: 14,
-    color: '#666',
     fontWeight: '500',
   },
   infoValue: {
     fontSize: 14,
-    color: '#333',
     fontWeight: 'bold',
   },
   testContainer: {
@@ -274,7 +323,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 16,
-    color: '#333',
   },
   testSection: {
     marginBottom: 24,
@@ -283,10 +331,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
     marginBottom: 12,
-    color: '#555',
   },
   testText: {
-    color: '#333',
     marginBottom: 4,
   },
   spacingBox: {
@@ -325,12 +371,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 16,
-    color: '#333',
   },
   animationStage: {
     width: 200,
     height: 100,
-    backgroundColor: '#f0f0f0',
     borderRadius: 8,
     marginBottom: 16,
     overflow: 'hidden',
@@ -369,11 +413,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 4,
-    color: '#333',
   },
   gridSubtitle: {
     fontSize: 12,
-    color: '#666',
     marginBottom: 16,
   },
   grid: {
