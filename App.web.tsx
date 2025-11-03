@@ -24,6 +24,7 @@ import {
   AnimationDemo,
   PixelPerfectGrid,
 } from './src/components/DemoComponents';
+import WebGLCanvas from './src/components/WebGLCanvas.web';
 
 // Web-specific Skia fallback component
 const WebSkiaFallback: React.FC<{width: number; height: number}> = ({
@@ -98,7 +99,7 @@ function App(): React.JSX.Element {
 
   const sections = [
     {key: 'platform' as DemoSection, title: 'Platform Info', icon: '📱'},
-    {key: 'skia' as DemoSection, title: 'Graphics Demo', icon: '🎨'},
+    {key: 'skia' as DemoSection, title: 'WebGL Demo', icon: '�'},
     {key: 'consistency' as DemoSection, title: 'Consistency', icon: '📐'},
     {key: 'animation' as DemoSection, title: 'Animation', icon: '🚀'},
     {key: 'grid' as DemoSection, title: 'Pixel Grid', icon: '🔲'},
@@ -116,17 +117,16 @@ function App(): React.JSX.Element {
                 styles.sectionTitle,
                 {color: isDarkMode ? '#fff' : '#333'},
               ]}>
-              Cross-Platform Graphics
+              WebGL Graphics Engine
             </Text>
-            <WebSkiaFallback width={320} height={300} />
+            <WebGLCanvas />
             <Text
               style={[
                 styles.sectionDescription,
                 {color: isDarkMode ? '#ccc' : '#666'},
               ]}>
-              {platformInfo.isWeb
-                ? 'Web implementation using React Native Web with CSS-based graphics.'
-                : 'Native implementation with Skia rendering for pixel-perfect graphics.'}
+              Hardware-accelerated WebGL rendering with real-time animations and
+              pixel-perfect graphics for web platforms.
             </Text>
           </View>
         );

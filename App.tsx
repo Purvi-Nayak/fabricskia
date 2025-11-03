@@ -18,7 +18,7 @@ import {
 } from 'react-native';
 
 import {renderingEngine} from './src/engine/RenderingEngine';
-import {SkiaShapesDemo} from './src/components/SkiaCanvas';
+import WebGLCanvas from './src/components/WebGLCanvas';
 import {
   PlatformInfoDisplay,
   ConsistencyTestComponent,
@@ -111,7 +111,7 @@ function App(): React.JSX.Element {
                 Platform: {Platform.OS.toUpperCase()} {Platform.Version}
               </Text>
             </View>
-            <SkiaShapesDemo width={320} height={300} />
+            <WebGLCanvas />
             <Text
               style={[
                 styles.sectionDescription,
