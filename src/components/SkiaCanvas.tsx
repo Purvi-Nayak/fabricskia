@@ -2,7 +2,11 @@ import React, {useEffect, useState} from 'react';
 import {View, Platform, Text} from 'react-native';
 import {renderingEngine} from '../engine/RenderingEngine';
 
-// Dynamic import for Skia components to handle cases where the module isn't available
+// Platform-specific imports using dynamic import
+let SkiaComponents: any = {};
+let ReanimatedComponents: any = {};
+
+// Declare all Skia components
 let Canvas: any = null;
 let Circle: any = null;
 let Path: any = null;
@@ -16,37 +20,41 @@ let LinearGradient: any = null;
 let RadialGradient: any = null;
 let Shadow: any = null;
 let Blur: any = null;
+
+// Declare all Reanimated components
 let useSharedValue: any = null;
 let useFrameCallback: any = null;
 let interpolate: any = null;
 let Extrapolate: any = null;
 
-try {
-  if (Platform.OS !== 'web') {
-    const SkiaComponents = require('@shopify/react-native-skia');
-    Canvas = SkiaComponents.Canvas;
-    Circle = SkiaComponents.Circle;
-    Path = SkiaComponents.Path;
-    Rect = SkiaComponents.Rect;
-    SkiaText = SkiaComponents.Text;
-    Skia = SkiaComponents.Skia;
-    Group = SkiaComponents.Group;
-    Image = SkiaComponents.Image;
-    useImage = SkiaComponents.useImage;
-    LinearGradient = SkiaComponents.LinearGradient;
-    RadialGradient = SkiaComponents.RadialGradient;
-    Shadow = SkiaComponents.Shadow;
-    Blur = SkiaComponents.Blur;
+// Initialize components only on native platforms
+if (Platform.OS !== 'web') {
+  try {
+    // Import Skia components
+    const SkiaModule = require('@shopify/react-native-skia');
+    Canvas = SkiaModule.Canvas;
+    Circle = SkiaModule.Circle;
+    Path = SkiaModule.Path;
+    Rect = SkiaModule.Rect;
+    SkiaText = SkiaModule.Text;
+    Skia = SkiaModule.Skia;
+    Group = SkiaModule.Group;
+    Image = SkiaModule.Image;
+    useImage = SkiaModule.useImage;
+    LinearGradient = SkiaModule.LinearGradient;
+    RadialGradient = SkiaModule.RadialGradient;
+    Shadow = SkiaModule.Shadow;
+    Blur = SkiaModule.Blur;
 
-    // Animation imports
-    const ReanimatedComponents = require('react-native-reanimated');
-    useSharedValue = ReanimatedComponents.useSharedValue;
-    useFrameCallback = ReanimatedComponents.useFrameCallback;
-    interpolate = ReanimatedComponents.interpolate;
-    Extrapolate = ReanimatedComponents.Extrapolate;
+    // Import Reanimated components
+    const ReanimatedModule = require('react-native-reanimated');
+    useSharedValue = ReanimatedModule.useSharedValue;
+    useFrameCallback = ReanimatedModule.useFrameCallback;
+    interpolate = ReanimatedModule.interpolate;
+    Extrapolate = ReanimatedModule.Extrapolate;
+  } catch (error) {
+    console.warn('React Native Skia or Reanimated not available:', error);
   }
-} catch (error) {
-  console.warn('React Native Skia not available:', error);
 }
 
 interface SkiaCanvasProps {
