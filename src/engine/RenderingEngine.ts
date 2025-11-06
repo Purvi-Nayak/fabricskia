@@ -73,7 +73,7 @@ export class RenderingEngine {
     if (Platform.OS === 'web') return false;
 
     // For Android, check if new architecture is enabled
-    if (Platform.OS === 'android') {
+    if (Platform.OS === 'android' || Platform.OS === 'ios') {
       try {
         // This is a common way to detect Fabric on Android
         return (global as any)?.nativeFabricUIManager != null;
