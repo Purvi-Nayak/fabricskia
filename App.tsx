@@ -240,14 +240,6 @@ function App(): React.JSX.Element {
             {backgroundColor: isDarkMode ? '#2a2a2a' : '#f8f9fa'},
           ]}>
           <Text
-            style={[styles.footerText, {color: isDarkMode ? '#ccc' : '#666'}]}>
-            React Native {Platform.Version} • Fabric + Skia Integration
-          </Text>
-          <Text
-            style={[styles.footerText, {color: isDarkMode ? '#ccc' : '#666'}]}>
-            Pixel-Perfect Cross-Platform Rendering
-          </Text>
-          <Text
             style={[
               styles.footerText,
               {color: fabricStatus ? '#4CAF50' : '#FF5722'},

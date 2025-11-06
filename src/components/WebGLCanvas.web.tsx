@@ -12,8 +12,8 @@ interface WebGLCanvasProps {
  * Hardware-accelerated graphics rendering for web using WebGL/Canvas
  */
 export const WebGLCanvas: React.FC<WebGLCanvasProps> = ({
-  width = 320,
-  height = 300,
+  width = 420,
+  height = 400,
 }) => {
   const canvasRef = useRef<any>(null);
   const animationRef = useRef<number>();
@@ -516,7 +516,7 @@ export const WebGLCanvas: React.FC<WebGLCanvasProps> = ({
       </View>
 
       <View style={styles.info}>
-        <Text style={styles.infoTitle}>🚀 Web Rendering Engine</Text>
+        {/* <Text style={styles.infoTitle}>🚀 Web Rendering Engine</Text> */}
         <Text style={styles.infoText}>
           {renderingMode === 'webgl'
             ? 'Hardware-accelerated WebGL with shaders and real-time animations'

@@ -99,7 +99,7 @@ function App(): React.JSX.Element {
 
   const sections = [
     {key: 'platform' as DemoSection, title: 'Platform Info', icon: '📱'},
-    {key: 'skia' as DemoSection, title: 'WebGL Demo', icon: '�'},
+    {key: 'skia' as DemoSection, title: 'WebGL Demo', icon: '🎨'},
     {key: 'consistency' as DemoSection, title: 'Consistency', icon: '📐'},
     {key: 'animation' as DemoSection, title: 'Animation', icon: '🚀'},
     {key: 'grid' as DemoSection, title: 'Pixel Grid', icon: '🔲'},
@@ -159,21 +159,25 @@ function App(): React.JSX.Element {
           Cross-Platform Rendering Engine
         </Text>
         <View style={styles.headerInfo}>
-          <Text
-            style={[
-              styles.headerSubtitle,
-              {color: isDarkMode ? '#ccc' : '#666'},
-            ]}>
-            {platformInfo.platform.toUpperCase()} • Fabric:{' '}
-            {platformInfo.fabricEnabled ? 'ON' : 'OFF'}
-          </Text>
-          <Text
-            style={[
-              styles.headerSubtitle,
-              {color: isDarkMode ? '#ccc' : '#666'},
-            ]}>
-            Pixel Density: {platformInfo.pixelDensity}x
-          </Text>
+          <View style={styles.headerInfoRow}>
+            <Text
+              style={[
+                styles.headerSubtitle,
+                {color: isDarkMode ? '#ccc' : '#666'},
+              ]}>
+              {platformInfo.platform.toUpperCase()} • Fabric:{' '}
+              {platformInfo.fabricEnabled ? 'ON' : 'OFF'}
+            </Text>
+          </View>
+          <View style={styles.headerInfoRow}>
+            <Text
+              style={[
+                styles.headerSubtitle,
+                {color: isDarkMode ? '#ccc' : '#666'},
+              ]}>
+              Pixel Density: {platformInfo.pixelDensity}x
+            </Text>
+          </View>
         </View>
       </View>
 
@@ -252,19 +256,27 @@ const styles = StyleSheet.create({
     padding: 16,
     borderBottomWidth: 1,
     borderBottomColor: '#e0e0e0',
+    minHeight: 80,
   },
   headerTitle: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 4,
+    marginBottom: 8,
+    flexShrink: 1,
   },
   headerInfo: {
+    flexDirection: 'column',
+    gap: 4,
+  },
+  headerInfoRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    flexWrap: 'wrap',
   },
   headerSubtitle: {
-    fontSize: 12,
+    fontSize: 11,
     fontWeight: '500',
+    flexShrink: 1,
   },
   tabContainer: {
     borderBottomWidth: 1,
@@ -273,10 +285,11 @@ const styles = StyleSheet.create({
   tab: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 16,
+    paddingHorizontal: 12,
     paddingVertical: 8,
-    marginHorizontal: 4,
+    marginHorizontal: 2,
     borderRadius: 20,
+    minWidth: 80,
   },
   activeTab: {
     backgroundColor: '#007AFF',
@@ -286,8 +299,9 @@ const styles = StyleSheet.create({
     marginRight: 6,
   },
   tabText: {
-    fontSize: 14,
+    fontSize: 12,
     fontWeight: '500',
+    textAlign: 'center',
   },
   activeTabText: {
     color: '#fff',
@@ -295,11 +309,13 @@ const styles = StyleSheet.create({
   skiaContainer: {
     padding: 16,
     alignItems: 'center',
+    maxWidth: '100%',
   },
   sectionTitle: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 'bold',
     marginBottom: 16,
+    textAlign: 'center',
   },
   sectionDescription: {
     fontSize: 14,
@@ -309,13 +325,15 @@ const styles = StyleSheet.create({
   },
   webGraphicsContainer: {
     flexDirection: 'row',
-    gap: 12,
+    gap: 8,
     marginVertical: 12,
+    justifyContent: 'center',
+    flexWrap: 'wrap',
   },
   webShape: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
+    width: 32,
+    height: 32,
+    borderRadius: 16,
   },
   footer: {
     padding: 16,

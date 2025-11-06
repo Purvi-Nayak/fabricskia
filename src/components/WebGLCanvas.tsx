@@ -95,12 +95,7 @@ export const WebGLCanvas: React.FC = () => {
 
       <SkiaShapesDemo width={320} height={600} />
 
-      <View style={styles.info}>
-        <Text style={styles.infoTitle}>🚀 Native Rendering</Text>
-        <Text style={styles.infoText}>
-          Hardware-accelerated Skia rendering with flying sparrow animation
-        </Text>
-      </View>
+      <View style={styles.info}></View>
     </View>
   );
 };
